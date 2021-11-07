@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm start`
 
-<img src="React App (6).png" width="128"/>
+<img src="React App (6).png"/>
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
