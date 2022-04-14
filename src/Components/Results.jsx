@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useResultContext } from '../Context/ResultProvider'
+import React, { useEffect } from 'react';
+import { useResultContext } from '../Context/ResultProvider';
 import { useLocation } from 'react-router';
 import ReactPlayer from 'react-player';
 import Loading from './Loading';
@@ -7,28 +7,27 @@ import Loading from './Loading';
 const Results = () => {
     const { isLoading, results, getResult, searchTerm } = useResultContext();
     const location = useLocation();
-    useEffect(() => {
-        if (searchTerm) {
-            if (location.pathname === "/videos") {
-                getResult(`/search/q=${searchTerm} videos`)
-            } else {
-                getResult(`${location.pathname}/q=${searchTerm}&num=10`)
-            }
-        }
 
-    }, [searchTerm, location.pathname])
+    useEffect(() => {
+            if (searchTerm) {
+                if (location.pathname === "/videos") {
+                    getResult(`/search/q=${searchTerm} videos`)
+                } else {
+                    getResult(`${location.pathname}/q=${searchTerm}&num=10`)
+                }
+            }
+        
+    }, [searchTerm, location.pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
     if (isLoading) {
         return <Loading />
     }
 
-
-
     switch (location.pathname) {
         case '/search':
             return (
                 <div className="flex flex-wrap justify-between items-center space-y-6 sm:px-52 md:px-40">
-                    {results.map(({ link, title, description }, index) => (
+                    {results?.map(({ link, title, description }, index) => (
 
                         <div key={index} className="md:w-2/5 w-full">
 
@@ -48,7 +47,7 @@ const Results = () => {
 
                 </div>
             )
-        case "/images":
+        case "/image":
             return (
                 <div className="flex flex-wrap justify-center items-center">
                     {results?.map(({ image, link: { href, title, domain } }) => (
@@ -67,7 +66,7 @@ const Results = () => {
         case "/news":
             return (
                 <div className="flex flex-wrap justify-between items-center space-y-6 sm:px-56">
-                    {results.map(({ links, id, source, title }) => (
+                    {results?.map(({ links, id, source, title }) => (
                         <div key={id} className="md:w-2/5 w-full">
                             <a href={links?.[0].href} target="_blank" rel="noreferrer" className="hover:underline">
                                 <p className="text-lg dark:text-green-300 text-green-700">
@@ -88,7 +87,7 @@ const Results = () => {
         case "/videos":
             return (
                 <div className="flex flex-wrap justify-center items-center">
-                    {results.map((video, index) => (
+                    {results?.map((video, index) => (
                         <div key={index} className="p-2">
                             {video.additional_links?.[0].href && <ReactPlayer url={video.additional_links?.[0].href} controls width="350px" height="200px" />}
                         </div>
@@ -96,8 +95,8 @@ const Results = () => {
                 </div>
             )
         default:
-            return 'ERROR';
+            return <p className='flex flex-row items-center justify-center w-full h-full'>Something went wrong :(</p>;
     }
 }
 
-export default Results
+export default Results;

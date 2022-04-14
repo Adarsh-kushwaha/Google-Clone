@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const AllLinks = [
     {url:"/search", text:"🔎All", id:"sa"},
     {url:"/news", text:"📰News", id:"sc"},
-    {url:"/images", text:"📷Images", id:"sb"},
+    {url:"/image", text:"📷Images", id:"sb"},
     {url:"/videos", text:"📺Videos", id:"sd"}
 ]
 
