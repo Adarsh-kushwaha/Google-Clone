@@ -13,7 +13,7 @@ const Search = () => {
         if (debounceValue) {
             setSearchTerm(debounceValue)
         }
-    }, [debounceValue])// eslint-disable-line react-hooks/exhaustive-deps
+    }, [debounceValue]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="relative sm:ml-48 md:ml-72 sm:-mt-5 mt-3">

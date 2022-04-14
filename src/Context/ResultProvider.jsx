@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useContext } from 'react/cjs/react.development';
+import { useContext } from 'react';
 import ResultContext from './ResultContext';
 
 const ResultProvider = (props) => {
@@ -28,7 +28,7 @@ const ResultProvider = (props) => {
             setResults(data.entries);
         } else if (type.includes('/image')) {
             setResults(data.image_results);
-        } else{
+        } else {
             setResults(data.results);
         }
 
