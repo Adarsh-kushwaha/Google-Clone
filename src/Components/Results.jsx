@@ -35,7 +35,7 @@ const Results = () => {
 
                             <a href={link} target="_blank" rel="noreferrer">
                                 <p className="text-sm dark:text-gray-600 text-gray-400">
-                                    {link.length > 30 ? link.substring(0, 30) : link}
+                                    {link.length > 30 ? link.substring(0, 30) : link}...
                                 </p>
                                 <p className="text-lg hover:underline dark:text-green-300 text-green-700">
                                     {title}
