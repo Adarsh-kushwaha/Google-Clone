@@ -9,18 +9,20 @@ const Results = () => {
     const location = useLocation();
 
     useEffect(() => {
-            if (searchTerm) {
-                if (location.pathname === "/videos") {
-                    getResult(`/search/q=${searchTerm} videos`)
-                } else {
-                    getResult(`${location.pathname}/q=${searchTerm}&num=10`)
-                }
+        if (searchTerm) {
+            if (location.pathname === "/videos") {
+                getResult(`/search/q=${searchTerm} videos`)
+            } else {
+                getResult(`${location.pathname}/q=${searchTerm}&num=10`)
             }
-        
+        }
+
     }, [searchTerm, location.pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
+    console.log(results);
+
     if (isLoading) {
-        return <Loading />
+        return (<Loading />)
     }
 
     switch (location.pathname) {
@@ -32,13 +34,13 @@ const Results = () => {
                         <div key={index} className="md:w-2/5 w-full">
 
                             <a href={link} target="_blank" rel="noreferrer">
-                                <p className="text-sm dark:text-gray-500 text-gray-400">
+                                <p className="text-sm dark:text-gray-600 text-gray-400">
                                     {link.length > 30 ? link.substring(0, 30) : link}
                                 </p>
                                 <p className="text-lg hover:underline dark:text-green-300 text-green-700">
                                     {title}
                                 </p>
-                                <p className="text-sm dark:text-gray-300 text-gray-700">
+                                <p className="text-sm dark:text-gray-400 text-gray-700">
                                     {description}
                                 </p>
                             </a>
@@ -47,6 +49,7 @@ const Results = () => {
 
                 </div>
             )
+
         case "/image":
             return (
                 <div className="flex flex-wrap justify-center items-center">
@@ -61,13 +64,14 @@ const Results = () => {
                         </a>
                     ))}
                 </div>
+
             )
 
         case "/news":
             return (
                 <div className="flex flex-wrap justify-between items-center space-y-6 sm:px-56">
-                    {results?.map(({ links, id, source, title }) => (
-                        <div key={id} className="md:w-2/5 w-full">
+                    {results?.map(({ links, id, source, title, index }) => (
+                        <div key={index} className="md:w-2/5 w-full">
                             <a href={links?.[0].href} target="_blank" rel="noreferrer" className="hover:underline">
                                 <p className="text-lg dark:text-green-300 text-green-700">
                                     {title}

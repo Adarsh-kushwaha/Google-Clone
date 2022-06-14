@@ -9,6 +9,7 @@ const Search = () => {
     const { setSearchTerm } = useResultContext();
     const [debounceValue] = useDebounce(text, 900);
 
+    //debouncing implemented
     useEffect(() => {
         if (debounceValue) {
             setSearchTerm(debounceValue)
@@ -16,7 +17,7 @@ const Search = () => {
     }, [debounceValue]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div className="relative sm:ml-48 md:ml-72 sm:-mt-5 mt-3">
+        <div className="relative sm:ml-48 md:ml-72 sm:-mt-5 mt-3 ">
             <input
                 type="text"
                 value={text}
@@ -24,7 +25,7 @@ const Search = () => {
                 placeholder="type here to search anything..."
                 onChange={(e) => setText(e.target.value)}
             />
-            {!text && (<button type="button" className="absolute top-1.5 right-4 text-2xl text-green-500" onClick={() => setText("")}>X</button>)}
+            {text && (<button type="button" className="absolute top-2 left-30 px-2 font-bold text-2xl text-green-500" onClick={() => setText("")}>X</button>)}
             <Links />
         </div>
     )
